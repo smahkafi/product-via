@@ -3,7 +3,8 @@ import { useState } from "react"
 
 export default function AdminPage() {
     const [preview, setPreview] = useState<string | null>(null);
-    const [error, setError] = useState < string | null(null);
+    const [error, setError] = useState<string | null>(null);
+
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>){
         const file = e.target.files?.[0];
@@ -24,10 +25,17 @@ export default function AdminPage() {
         <div>
             <h1>Admin Panel</h1>
             
-            <input type="file" />
-
+            <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+            />
+            {error && (
+                <p style={{ color: "red" }}>{error}</p>
+            )}
+            {preview && (
+                <img src={preview} alt="preview" width={120}/>)}
             <p></p>
-            
             <img width="200" />
 
         </div>
